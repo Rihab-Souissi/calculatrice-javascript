@@ -11,5 +11,5 @@ creds: ${{ secrets.AZURE_CREDENTIALS }}
 - name: Deploy to Azure Web App
 uses: azure/webapps-deploy@v2
 with:
-app-name: &#39;my-azure-webapp&#39;
-images: &#39;my-dockerhub-username/my-app:latest&#39;
+app-name: "calcule";
+#images: "my-dockerhub-username/my-app:latest";
