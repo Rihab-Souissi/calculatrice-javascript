@@ -1,32 +1,35 @@
 name: CI - Calculatrice HTML/JS
 
+# Déclenche le workflow à chaque push sur n'importe quelle branche
 on:
   push:
-
-
 jobs:
   validate:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      # 1️⃣ Récupérer le code du dépôt
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Vérifier que ton HTML est valide
-      - name: Validate HTML
-        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
-        with:
-          root: "./"
-
-      # Vérifier que ton JavaScript ne contient pas d'erreurs
+      # 2️⃣ Installer Node.js (nécessaire pour ESLint et html-validate)
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
 
+      # 3️⃣ Installer ESLint globalement pour vérifier le JS
       - name: Install ESLint
         run: npm install -g eslint
 
-      - name: Run ESLint on app.js
-        run: eslint app.js --config .eslintrc.json
+      # 4️⃣ Installer html-validate pour vérifier le HTML
+      - name: Install html-validate
+        run: npm install -g html-validate
 
+      # 5️⃣ Lancer ESLint sur le fichier JavaScript principal
+      - name: Run ESLint
+        run: eslint app.js
+
+      # 6️⃣ Lancer html-validate sur le fichier HTML principal
+      - name: Run HTML validation
+        run: html-validate index.html
