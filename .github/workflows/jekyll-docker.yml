@@ -28,4 +28,5 @@ jobs:
         run: npm install -g eslint
 
       - name: Run ESLint on app.js
-        run: eslint app.js
+        run: eslint app.js --config .eslintrc.json
+
