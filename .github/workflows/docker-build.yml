@@ -1,6 +1,7 @@
 build:
 needs: jekyll-docker # Cette étape démarre après la réussite des tests
-runs-on: ubuntu-latest
+on: 
+push :
 steps:
 - name: Checkout code
 uses: actions/checkout@v3
