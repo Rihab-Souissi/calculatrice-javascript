@@ -1,5 +1,4 @@
 build:
-needs: jekyll-docker # Cette étape démarre après la réussite des tests
 on: 
 push :
 steps:
