@@ -1,0 +1,32 @@
+name: CI - Calculatrice HTML/JS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Vérifier que ton HTML est valide
+      - name: Validate HTML
+        uses: Cyb3r-Jak3/html5validator-action@v7
+        with:
+          root: "./"
+
+      # Vérifier que ton JavaScript ne contient pas d'erreurs
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install ESLint
+        run: npm install -g eslint
+
+      - name: Run ESLint on app.js
+        run: eslint app.js
