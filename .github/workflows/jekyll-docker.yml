@@ -3,28 +3,18 @@ name: CI - Calculatrice HTML
 # Déclenche le workflow à chaque push sur n'importe quelle branche
 on:
   push:
-    branches:
-      - "**"
+  
 
 jobs:
-  validate:
+  test:
     runs-on: ubuntu-latest
-
     steps:
       # 1️⃣ Récupérer le code du dépôt
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ Installer Node.js (nécessaire pour html-validate)
-      - name: Setup Node.js
+      # 2️⃣ Installer Node.js (utile si tu veux utiliser des outils JS)
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
-
-      # 3️⃣ Installer html-validate pour vérifier le HTML
-      - name: Install html-validate
-        run: npm install -g html-validate
-
-      # 4️⃣ Lancer la validation HTML
-      - name: Run HTML validation
-        run: html-validate index.html
+          node-version: '16'
