@@ -19,9 +19,11 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t rihabsouissi/calcule:${{ github.sha }} .
-          docker tag rihabsouissi/calcule:${{ github.sha }} my-dockerhub-username/my-app:latest
+          docker tag rihabsouissi/calcule:${{ github.sha }} rihabsouissi/calcule:v1
+          docker tag rihabsouissi/calcule:${{ github.sha }} rihabsouissi/calcule:latest
 
       - name: Push Docker image
         run: |
           docker push rihabsouissi/calcule:${{ github.sha }}
           docker push rihabsouissi/calcule:v1
+          docker push rihabsouissi/calcule:latest
